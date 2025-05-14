@@ -93,12 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       instructions:
         "Nuovo livello! Inserisci la data del nostro primo incontro (giorno e mese)",
-      sequence: [1, 2, 0, 9], // 12/09 - da modificare con la data reale
+      sequence: [1, 7, 0, 9],
     },
     {
       instructions:
-        "Ultimo livello! Quale numero fortunato è speciale per noi?",
-      sequence: [7], // Da modificare con un numero significativo tra voi
+        "Ultimo livello! Su una scala da 1 a 10, quanto sei speciale per me?",
+      sequence: [1, 0], // Da modificare con un numero significativo tra voi
     },
   ];
 
