@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Per Luna ❤️</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Star background -->
+      <div class="star-field" id="starField"></div>
+
+      <!-- Scene 1: Introduction -->
+      <div class="scene visible" id="scene1">
+        <h1>Ciao <span class="luna-heart">Luna</span>!</h1>
+        <p>Ho preparato qualcosa di speciale per te...</p>
+        <div class="loading-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <button class="btn" id="startBtn">Scopri</button>
+      </div>
+
+      <!-- Scene 2: Luna's Moon -->
+      <div class="scene hidden" id="scene2">
+        <h1>La Luna mi ricorda te</h1>
+        <div class="moon-container">
+          <div class="moon" id="moon"></div>
+        </div>
+        <p>
+          Splendente e magica, proprio come te. <br />Ti va di affrontare una
+          piccola sfida?
+        </p>
+        <button class="btn" id="moonBtn">Sono pronta!</button>
+      </div>
+
+      <!-- Scene 3: Puzzle Game -->
+      <div class="scene hidden" id="scene3">
+        <div class="level-indicator">
+          Livello <span id="puzzleLevel">1</span>/3
+        </div>
+        <h1>Rimetti insieme i pezzi</h1>
+        <p id="puzzleInstructions">
+          Inserisci la combinazione segreta: 2-8-1-2-0-4
+        </p>
+        <div class="puzzle-container" id="puzzleContainer"></div>
+        <p id="puzzleHint">Clicca i numeri nella sequenza corretta...</p>
+      </div>
+
+      <!-- Scene 4: Marmot Game -->
+      <div class="scene hidden" id="scene4">
+        <div class="level-indicator">
+          Livello <span id="marmotLevel">1</span>/3
+        </div>
+        <h1>Acchiappa le marmotte!</h1>
+        <p>
+          Le nostre amiche marmotte sono timide... Aiutale a uscire e trovale
+          tutte!
+        </p>
+        <div class="marmot-game-container" id="marmotGameContainer">
+          <div class="marmot-score">
+            Marmotte trovate: <span id="marmotScore">0</span>/<span
+              id="marmotTotal"
+              >5</span
+            >
+          </div>
+          <div class="marmot-field" id="marmotField"></div>
+        </div>
+        <p id="marmotHint">
+          Clicca sulle tane per trovare le marmotte nascoste!
+        </p>
+      </div>
+
+      <!-- Scene 5: Final Question -->
+      <div class="scene hidden" id="scene5">
+        <div class="final-animation" id="finalAnimation"></div>
+        <h1 class="final-message">
+          Luna, ti andrebbe di passare San Valentino con me?
+        </h1>
+        <div class="choice-buttons">
+          <button class="btn yes-btn" id="yesBtn">Sì!</button>
+          <button class="btn" id="noBtn">No</button>
+        </div>
+        <p class="yes-response" id="yesResponse">
+          Non vedo l'ora di passare questa giornata speciale con te! ❤️
+        </p>
+        <p class="no-response" id="noResponse">
+          Posso convincerti se premi ancora il pulsante... 😊
+        </p>
+      </div>
+
+      <!-- Special animation containers -->
+      <div id="confettiRain" class="confetti-rain"></div>
+      <div id="loveExplosion" class="love-explosion"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
