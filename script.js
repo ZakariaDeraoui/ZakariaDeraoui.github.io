@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Definizione dei livelli multipli per il puzzle
   const puzzleLevels = [
     {
-      instructions: "Inserisci la combinazione segreta: 2-8-1-2-0-4",
+      instructions: "Inserisci la combinazione segreta di 6 cifre 🙃",
       sequence: [2, 8, 1, 2, 0, 4],
     },
     {
