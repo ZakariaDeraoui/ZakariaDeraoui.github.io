@@ -42,14 +42,19 @@ body {
     opacity 1s ease;
 }
 
+/* FIX APPLICATO: pointer-events e visibility per evitare click bloccati */
 .hidden {
   transform: translateY(100vh);
   opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 .visible {
   transform: translateY(0);
   opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 h1 {
@@ -298,47 +303,157 @@ p {
   }
 }
 
+/* --- NUOVO STILE PER LA SCENA FINALE (Glassmorphism Aggiornato) --- */
+
+/* Font calligrafico per la domanda */
 .final-message {
-  font-size: 2.5rem;
-  text-align: center;
-  max-width: 80%;
-  line-height: 1.5;
-  background: linear-gradient(45deg, #ff3366, #ff6b6b, #ffc3a0);
+  font-family: "Great Vibes", cursive;
+  font-size: 3.5rem; /* Ridotto da 4.5rem per evitare overflow */
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(45deg, #ff3366, #ff99cc, #ffc3a0);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: message-glow 2s infinite alternate;
-  margin-bottom: 2rem;
-  transition: transform 0.5s ease;
+  animation: text-shimmer 3s infinite linear;
+  text-shadow: none;
 }
 
-@keyframes message-glow {
-  from {
-    text-shadow: 0 0 5px rgba(255, 51, 102, 0.5);
+/* Effetto luccichio sul testo */
+@keyframes text-shimmer {
+  0% {
+    filter: hue-rotate(0deg);
   }
+  100% {
+    filter: hue-rotate(30deg);
+  }
+}
+
+/* La "Glass Card" che contiene la domanda - FIX DIMENSIONI */
+.final-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  /* Dimensioni e spaziatura ottimizzate */
+  padding: 2rem;
+  width: auto;
+  max-width: 90vw; /* Non più larga del 90% della larghezza schermo */
+  max-height: 85vh; /* Non più alta dell'85% dell'altezza schermo */
+  overflow-y: auto; /* Aggiunge scroll se il contenuto è troppo alto */
+
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 51, 102, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centra verticalmente il contenuto */
+
+  transform: scale(0.9);
+  opacity: 0;
+  animation: card-appear 1s ease forwards 0.5s;
+}
+
+/* Scrollbar personalizzata per la card se necessario */
+.final-card::-webkit-scrollbar {
+  width: 6px;
+}
+.final-card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+.final-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 51, 102, 0.5);
+  border-radius: 10px;
+}
+
+@keyframes card-appear {
   to {
-    text-shadow: 0 0 20px rgba(255, 51, 102, 0.8),
-      0 0 30px rgba(255, 51, 102, 0.5);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Cuore pulsante sopra la domanda */
+.pulsing-heart {
+  font-size: 4rem; /* Leggermente ridotto */
+  margin-bottom: 0.5rem;
+  animation: heart-beat 1.2s infinite ease-in-out;
+  text-shadow: 0 0 20px rgba(255, 51, 102, 0.6);
+}
+
+@keyframes heart-beat {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.3);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.15);
+  }
+  60% {
+    transform: scale(1);
   }
 }
 
 .choice-buttons {
   display: flex;
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap; /* Permette ai bottoni di andare a capo se stretti */
+  justify-content: center;
 }
 
+/* Pulsante SÌ migliorato */
 .yes-btn {
-  background: linear-gradient(45deg, #33ff77, #6bff8d);
-  transform: scale(1.1);
+  background: linear-gradient(45deg, #ff3366, #ff0040);
+  font-size: 1.3rem; /* Leggermente ridotto */
+  padding: 1rem 2.5rem;
+  box-shadow: 0 0 20px rgba(255, 51, 102, 0.6);
+  animation: pulse-green 2s infinite;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transform: scale(1); /* Reset di base */
+  white-space: nowrap; /* Evita che il testo vada a capo brutto */
+}
+
+.yes-btn:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 0 40px rgba(255, 51, 102, 0.9);
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(255, 51, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 51, 102, 0);
+  }
+}
+
+/* Pulsante NO */
+.no-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 0.8rem 2rem;
 }
 
 .yes-response,
 .no-response {
-  font-size: 2.5rem;
-  margin-top: 2rem;
+  font-family: "Italianno";
+  font-size: 1.8rem; /* Ridotto per sicurezza */
+  margin-top: 1.5rem;
   opacity: 0;
   transition: opacity 1s ease, transform 1s ease;
+  text-align: center;
 }
 
 .response-visible {
@@ -418,6 +533,7 @@ p {
 
 .marmot-game-container {
   width: 500px;
+  max-width: 95%; /* Responsive fix per il gioco marmotte */
   height: 400px;
   position: relative;
   margin: 2rem 0;
@@ -570,7 +686,6 @@ p {
   }
 }
 
-/* Aggiunte per i nuovi livelli */
 .level-indicator {
   position: absolute;
   top: 10px;
@@ -582,7 +697,6 @@ p {
   font-weight: bold;
 }
 
-/* Animazione speciale per il Sì */
 .love-explosion {
   position: fixed;
   top: 0;
@@ -620,7 +734,6 @@ p {
   }
 }
 
-/* Confetti migliorati */
 .confetti-rain {
   position: fixed;
   top: 0;
@@ -646,5 +759,36 @@ p {
     transform: translate3d(var(--finalX), var(--finalY), 0)
       rotateX(var(--rotateX)) rotateY(var(--rotateY)) rotateZ(var(--rotateZ));
     opacity: 0;
+  }
+}
+
+/* Media query per dispositivi mobili aggiornata */
+@media (max-width: 768px) {
+  .final-message {
+    font-size: 2.2rem; /* Molto più piccolo su mobile */
+    margin-bottom: 1rem;
+  }
+  .final-card {
+    padding: 1.5rem; /* Padding minimo su mobile */
+    width: 95%; /* Occupa quasi tutta la larghezza */
+    max-height: 80vh; /* Un po' più di spazio per la tastiera/browser bar */
+  }
+  .choice-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+  .pulsing-heart {
+    font-size: 3rem;
+  }
+
+  /* Fix per il gioco marmotte su mobile */
+  .marmot-game-container {
+    width: 100%;
+    height: auto;
+  }
+  .marmot-field {
+    height: 300px;
+    gap: 10px;
   }
 }
